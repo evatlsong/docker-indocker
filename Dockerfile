@@ -4,7 +4,7 @@ FROM ubuntu:16.04
 MAINTAINER evatlsong "evatlsong@gmail.com"
 ENV REFRESHED_AT 2017-12-24
 
-RUN apt-get update && apt-get install -y apt-utils wget
+RUN apt-get update && apt-get install -y apt-utils
 RUN apt-get update && apt-get install -y git lsb-release apt-utils software-properties-common \
         && echo "Install packages to allow apt to use a repository over HTTPS" \
 && apt-get update \
