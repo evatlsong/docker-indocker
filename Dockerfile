@@ -23,8 +23,12 @@ stable" \
 && echo "install docker" \
 && apt-get update \
 && apt-get install -y docker-ce \
-&& echo "install docker finish" &&  \
-    wget https://cdn.rawgit.com/Mirantis/kubeadm-dind-cluster/master/fixed/dind-cluster-v1.8.sh && \
-chmod +x dind-cluster-v1.8.sh && \
-
-./dind-cluster-v1.8.sh up
+&& echo "install docker finish" \
+&& apt-get update && apt-get install -y apt-transport-https \
+&& curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+&& cat <<EOF >/etc/apt/sources.list.d/kubernetes.list \
+&& deb http://apt.kubernetes.io/ kubernetes-xenial main \
+&& EOF \
+&& apt-get update \
+&& apt-get install -y kubelet kubeadm kubectl \
+&& kubeadm init
